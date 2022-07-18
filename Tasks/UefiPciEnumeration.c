@@ -13,8 +13,6 @@
 #define MAKE_CONFIG_ADDR(bus, dev, func, offset)\
 (UINT32)(0x80000000 | (bus)<<16 | (dev)<<11 | (func)<<8 | (offset)&0xFC)
 
-#define NO_DEVICE    0xFF
-
 // IO specified 32bit
 EFI_STATUS PciIOWrite32(IN UINT32 io_addr, IN UINT32 data);
 UINT32 PciIORead32(IN UINT32 io_data);
