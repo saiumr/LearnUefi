@@ -1,0 +1,22 @@
+[Defines]
+  INF_VERSION = 0x00010005
+  BASE_NAME = UefiCstdMain
+  FILE_GUID = 8d5ba02d-5d98-4515-9aa6-7335a545d539
+  MODULE_TYPE = UEFI_APPLICATION
+  VERSION_STRING = 1.0
+  ENTRY_POINT = ShellCEntryLib
+  VALID_ARCHITECTURES = X64
+
+[Sources]
+  UefiCstdMain.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ShellPkg/ShellPkg.dec
+  
+
+[LibraryClasses]
+  LibC             # exist? Book error?
+  LibStdio         # exist? Book error?
+  ShellCEntryLib
+

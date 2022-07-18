@@ -1,0 +1,23 @@
+[Defines]
+    INF_VERSION = 0x00010005
+    BASE_NAME = UefiDiskInfoShell
+    FILE_GUID = 51325c5a-5faa-464d-a113-ba7a01bca248
+    MODULE_TYPE = UEFI_APPLICATION
+    VERSION_STRING = 1.0
+    ENTRY_POINT = ShellCEntryLib
+
+[Sources]
+    UefiDiskInfoShell.c
+
+[Packages]
+    MdePkg/MdePkg.dec
+    ShellPkg/ShellPkg.dec
+
+[LibraryClasses]
+    ShellCEntryLib
+    UefiBootServicesTableLib
+    UefiLib
+    BaseMemoryLib
+
+[Protocols]
+    gEfiDiskInfoProtocolGuid

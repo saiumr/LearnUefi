@@ -1,0 +1,22 @@
+[Defines]
+    INF_VERSION = 0x00010005
+    BASE_NAME = TUefiSMBIOS
+    FILE_GUID = 77394844-a604-4c42-92ed-04d9c87b85b2
+    MODULE_TYPE = UEFI_APPLICATION
+    VERSION_STRING = 1.0
+    ENTRY_POINT = UefiMain
+
+[Sources]
+    TUefiSMBIOS.c
+
+[Packages]
+    MdePkg\MdePkg.dec
+ 
+[LibraryClasses]
+    UefiApplicationEntryPoint
+    UefiLib
+    UefiBootServicesTableLib
+
+[Protocols]
+    gEfiSmbiosProtocolGuid
+   

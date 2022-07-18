@@ -1,0 +1,21 @@
+[Defines]
+    INF_VERSION = 0x00010005
+    BASE_NAME = DebugUefiMain
+    FILE_GUID = 211f8d1f-97e7-4858-80b9-cc077b74b88d
+    MODULE_TYPE = UEFI_APPLICATION
+    VERSION_STRING = 1.0
+    ENTRY_POINT = UefiMain
+
+[Sources]
+    DebugUefiMain.c
+
+[Packages]
+    MdePkg\MdePkg.dec
+ 
+[LibraryClasses]
+    UefiApplicationEntryPoint
+    UefiLib
+
+# Close optimiz option
+[BuildOptions]
+MSFT:DEBUG_*_IA32_CC_FLAGS = /Od

@@ -1,0 +1,19 @@
+[Defines]
+    INF_VERSION = 0x00010005
+    BASE_NAME = UefiFindProtocols
+    FILE_GUID = 7896936E-ED34-ffdb-AE97-1FA5E4ED2117
+    MODULE_TYPE = UEFI_APPLICATION
+    VERSION_STRING = 1.0
+    ENTRY_POINT = UefiMain
+
+[Sources]
+    UefiFindProtocols.c
+
+[Packages]
+    MdePkg/MdePkg.dec
+ 
+[LibraryClasses]
+    UefiApplicationEntryPoint
+    UefiLib
+
+

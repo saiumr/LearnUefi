@@ -1,0 +1,20 @@
+[Defines]
+    INF_VERSION = 0x00010005
+    BASE_NAME = UefiSysTableMain
+    FILE_GUID = 1eca358d-ed1d-4fe3-bd55-07df28e63f8d
+    MODULE_TYPE = UEFI_APPLICATION
+    VERSION_STRING = 1.0
+    ENTRY_POINT = UefiMain
+
+[Sources]
+    UefiSysTableMain.c
+
+[Packages]
+    MdePkg\MdePkg.dec
+ 
+[LibraryClasses]
+    UefiApplicationEntryPoint
+    UefiLib
+    UefiBootServicesTableLib
+
+

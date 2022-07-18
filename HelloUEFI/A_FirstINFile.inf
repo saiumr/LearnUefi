@@ -1,0 +1,37 @@
+# 这份配置文件读取失败了，可能是因为文件中有中文  
+# [块名]
+# 标准应用工程模块    
+
+# 列出模块的属性变量和其他变量，可以在其他块中引用  
+[Defines]
+    INF_VERSION = 0x00010005
+    BASE_NAME = UefiMain
+    FILE_GUID = 6987936E-ED34-ffdb-AE97-1FA5E4ED2117
+    MODULE_TYPE = UEFI_APPLICATION
+    VERSION_STRING = 1.0
+    ENTRY_POINT = UefiMain
+
+# 列出本模块的所有源文件和资源文件  
+[Sources]
+    main.c
+
+# 列出本模块引用到的所有包的包声明文件.dec  可能引用的资源有头文件、GUID、protocol等，这些资源都在包声明文件中声明了
+[Packages]
+    MdePkg\MdePkg.dec
+
+# 列出本模块要链接的库模块  
+[LibraryClasses]
+    UefiApplicationEntryPoint
+    UefiLib
+
+# 以下是工程文件非必须块  
+# [Protocols]           列出本模块用到的Protocol
+# [Guids]               列出本模块用到的GUID
+# [BuildOptions]        指定编译和链接选项 
+# [Pcd]                 平台配置数据库（Platform Configuration Database） 列出本模块用到的Pcd变量，这些变量可以被整个UEFI系统访问  
+# [PcdEx]               列出本模块用到的Pcd变量，这些变量可以被整个UEFI系统访问
+# [FixedPcd]            列出本模块用到的Pcd编译期常量  
+# [FeaturePcd]          列出本模块用到的编译期常量  
+# [PatchPcd]            列出的Pcd变量仅可以被本模块使用
+
+
