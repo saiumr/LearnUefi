@@ -50,9 +50,9 @@ EFI_STATUS PciEnumeration() {
     Print(L"---      ---      ----     ------   ------   -----   \n");
     gST->ConOut->SetAttribute(gST->ConOut, EFI_YELLOW);
 
-    for (bus_id = 0; bus_id < BUS_MAX; ++bus_id) {
-        for (dev_id = 0; dev_id < DEV_MAX; ++dev_id) {
-            for (func_id = 0; func_id < FUNC_MAX; ++func_id) {
+    for (bus_id = 0; bus_id <= BUS_MAX; ++bus_id) {
+        for (dev_id = 0; dev_id <= DEV_MAX; ++dev_id) {
+            for (func_id = 0; func_id <= FUNC_MAX; ++func_id) {
                 
                 // Vendor&Device ID
                 Status = PciIOWrite32(PCI_IO_ADDR, MAKE_CONFIG_ADDR(bus_id, dev_id, func_id, 0x0));
