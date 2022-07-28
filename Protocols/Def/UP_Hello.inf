@@ -1,0 +1,24 @@
+[Defines]
+  INF_VERSION             = 0x00010006
+  BASE_NAME               = UPhello
+  FILE_GUID               = 4245c869-3662-4cfb-8cf6-de8fb6fcbc3b
+  VERSION_STRING          = 1.0
+  MODULE_TYPE             = UEFI_DRIVER
+  ENTRY_POINT             = InitializeHello
+
+[Sources]
+  UP_Hello.c
+  UP_Hello.h
+
+[Packages]
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+  UefiDriverEntryPoint
+  UefiLib
+  UefiBootServicesTableLib
+  DebugLib
+  MemoryAllocationLib
+
+[Protocols]
+  gEfiHelloProtocolGuid

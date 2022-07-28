@@ -1,20 +1,21 @@
 [Defines]
     INF_VERSION = 0x00010005
-    BASE_NAME = UefiSysTableMain
-    FILE_GUID = 1eca358d-ed1d-4fe3-bd55-07df28e63f8d
+    BASE_NAME = UefiEventMouse
+    FILE_GUID = db92a02d-5d98-4515-9aa6-7335a545d539
     MODULE_TYPE = UEFI_APPLICATION
     VERSION_STRING = 1.0
     ENTRY_POINT = UefiMain
 
 [Sources]
-    UefiSysTableMain.c
+    UefiEventMouse.c
 
 [Packages]
     MdePkg/MdePkg.dec
- 
+
 [LibraryClasses]
     UefiApplicationEntryPoint
     UefiLib
     UefiBootServicesTableLib
 
-
+[Protocols]
+    gEfiSimplePointerProtocolGuid

@@ -1,0 +1,21 @@
+[Defines]
+  INF_VERSION = 0x00010005
+  FILE_GUID = e14edd67-5383-4b9a-8c70-ebb9118be6f8
+  BASE_NAME = UefiFile
+  MODULE_TYPE = UEFI_APPLICATION
+  VERSION_STRING = 1.0
+  ENTRY_POINT = UefiMain
+
+[Sources]
+  UefiFile.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+
+[LibraryClasses]
+  UefiLib
+  UefiApplicationEntryPoint
+  UefiBootServicesTableLib
+
+[Protocols]
+  gEfiSimpleFileSystemProtocolGuid
