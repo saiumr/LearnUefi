@@ -1,3 +1,6 @@
+#ifndef _UP_HELLO_H_
+#define _UP_HELLO_H_
+
 #include <Uefi.h>
 #include <Library/UefiBootServicesTableLib.h>
 #include <Library/UefiLib.h>
@@ -24,3 +27,5 @@ Greeting(
   IN EFI_HELLO_PROTOCOL    *This,
   IN CHAR16                *String
   );
+
+#endif
