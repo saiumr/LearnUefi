@@ -1,0 +1,11 @@
+[Defines]
+  DEC_SPECIFICATION = 0x00010005
+  PACKAGE_NAME = SimplePkg
+  PACKAGE_GUID = ba937452-7d1f-4cf1-bc32-8b18b5a346f8
+  PACKAGE_VERSION = 1.01
+
+[Includes]
+  Include
+
+[LibraryClasses]
+# provide interface for external app 
