@@ -42,7 +42,7 @@ UefiMain(
             (VOID**)&Device2TextProtocol
             );
   
-  // Find handles
+  // Find disk devices handles
   Status = gBS->LocateHandleBuffer(
             ByProtocol,
             &gEfiDiskIoProtocolGuid,

@@ -25,3 +25,4 @@
 
 [Components]
   Book/SimplePkg/HelloUefiPkgApp/HelloUefiPkg.inf
+  Book/Tasks/UefiUSBDeviceEnumeration.inf
