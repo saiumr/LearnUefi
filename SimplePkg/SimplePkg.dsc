@@ -22,7 +22,9 @@
   PrintLib|MdePkg/Library/BasePrintLib/BasePrintLib.inf
   PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
   UefiRuntimeServicesTableLib|MdePkg/Library/UefiRuntimeServicesTableLib/UefiRuntimeServicesTableLib.inf
+  PciLib|MdePkg/Library/BasePciLibCf8/BasePciLibCf8.inf
 
 [Components]
   Book/SimplePkg/HelloUefiPkgApp/HelloUefiPkg.inf
   Book/Tasks/UefiUSBDeviceEnumeration.inf
+  Book/Tasks/a.inf
