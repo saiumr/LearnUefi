@@ -11,7 +11,7 @@
 
 [Packages]
     MdePkg/MdePkg.dec
-    Book/SimplePkg/SimplePkg.dec
+    LearnUefi/SimplePkg/SimplePkg.dec
  
 [LibraryClasses]
     UefiApplicationEntryPoint

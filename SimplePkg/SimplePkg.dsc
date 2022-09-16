@@ -13,6 +13,7 @@
   UefiLib|MdePkg/Library/UefiLib/UefiLib.inf
   UefiBootServicesTableLib|MdePkg/Library/UefiBootServicesTableLib/UefiBootServicesTableLib.inf
   DebugLib|MdePkg/Library/UefiDebugLibStdErr/UefiDebugLibStdErr.inf
+  DebugLib|MdePkg/Library/UefiDebugLibConOut/UefiDebugLibConOut.inf
   RegisterFilterLib|MdePkg/Library/RegisterFilterLibNull/RegisterFilterLibNull.inf
   BaseLib|MdePkg/Library/BaseLib/BaseLib.inf
   BaseMemoryLib|MdePkg/Library/BaseMemoryLib/BaseMemoryLib.inf
@@ -23,8 +24,21 @@
   PcdLib|MdePkg/Library/BasePcdLibNull/BasePcdLibNull.inf
   UefiRuntimeServicesTableLib|MdePkg/Library/UefiRuntimeServicesTableLib/UefiRuntimeServicesTableLib.inf
   PciLib|MdePkg/Library/BasePciLibCf8/BasePciLibCf8.inf
+  HiiLib|MdeModulePkg/Library/UefiHiiLib/UefiHiiLib.inf
+  ShellLib|ShellPkg/Library/UefiShellLib/UefiShellLib.inf
+  FileHandleLib|MdePkg/Library/UefiFileHandleLib/UefiFileHandleLib.inf
+  SortLib|MdeModulePkg/Library/UefiSortLib/UefiSortLib.inf
+  UefiHiiServicesLib|MdeModulePkg/Library/UefiHiiServicesLib/UefiHiiServicesLib.inf
+  BmpSupportLib|MdeModulePkg/Library/BaseBmpSupportLib/BaseBmpSupportLib.inf
+  SafeIntLib|MdePkg/Library/BaseSafeIntLib/BaseSafeIntLib.inf
+  ShellCEntryLib|ShellPkg/Library/UefiShellCEntryLib/UefiShellCEntryLib.inf
+
+
 
 [Components]
-  Book/SimplePkg/HelloUefiPkgApp/HelloUefiPkg.inf
-  Book/Tasks/UefiUSBDeviceEnumeration.inf
-  Book/Tasks/a.inf
+  LearnUefi/SimplePkg/HelloUefiPkgApp/HelloUefiPkg.inf
+  LearnUefi/Tasks/UefiUSBDeviceEnumeration.inf
+  LearnUefi/HelloUEFI/UefiEventMain.inf
+  LearnUefi/SimplePkg/HiiTest/HiiTest.inf
+  LearnUefi/SimplePkg/HiiPic/HiiPic.inf
+  LearnUefi/SimplePkg/HiiPic2/HiiPic2.inf

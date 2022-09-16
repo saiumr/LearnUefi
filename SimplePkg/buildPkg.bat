@@ -1,3 +1,3 @@
 @call edksetup.bat
-build -t VS2019 -a X64 -p Book\SimplePkg\SimplePkg.dsc -b DEBUG
+build -t VS2015x86 -a X64 -p LearnUefi\SimplePkg\SimplePkg.dsc -b DEBUG
 pause
