@@ -23,6 +23,7 @@
   ShellLib
   MemoryAllocationLib
   BmpSupportLib
+  DebugLib
 
 [Protocols]
   gEfiGraphicsOutputProtocolGuid

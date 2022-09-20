@@ -6,6 +6,7 @@
 #include <Library/ShellLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Library/BmpSupportLib.h>
+#include <Library/DebugLib.h>
 
 EFI_GRAPHICS_OUTPUT_PROTOCOL    *gGraphicsOut;
 
@@ -42,7 +43,7 @@ UefiMain(
   // 4. Use Blt() draw pic.
   EFI_STATUS Status;
   //Status = DrawPic(L"lm.bmp");
-  Status = DrawPic(L"Logo.bmp");
+  Status = DrawPic(L"s1.bmp");
   if ( !EFI_ERROR (Status) ) {
     Print(L"- Done -\n");
   }

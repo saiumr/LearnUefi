@@ -8,6 +8,10 @@
   SKUID_IDENTIFIER = DEFAULT
   OUTPUT_DIRECTORY = Build/Simple
 
+  DEFINE DEBUG_ENABLE_OUTPUT = TRUE     # Enable Debug
+  DEFINE DEBUG_PROPERTY_MASK = 2        # DEBUG PRINT
+
+
 [LibraryClasses]
   UefiApplicationEntryPoint|MdePkg/Library/UefiApplicationEntryPoint/UefiApplicationEntryPoint.inf
   UefiLib|MdePkg/Library/UefiLib/UefiLib.inf
@@ -42,3 +46,4 @@
   LearnUefi/SimplePkg/HiiTest/HiiTest.inf
   LearnUefi/SimplePkg/HiiPic/HiiPic.inf
   LearnUefi/SimplePkg/HiiPic2/HiiPic2.inf
+  LearnUefi/SimplePkg/giftest/giftest.inf
