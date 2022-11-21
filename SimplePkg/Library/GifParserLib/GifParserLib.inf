@@ -1,0 +1,52 @@
+[Defines]
+  INF_VERSION = 0x00010006
+  BASE_NAME   = GifParserLib
+  FILE_GUID   = adcf3e00-97e4-4094-a5f6-4c2e13af0f35
+  MODULE_TYPE = BASE
+  VERSION_STRING = 1.0
+  LIBRARY_CLASS = GifParserLib | DXE_DRIVER DXE_RUNTIME_DRIVER DXE_SMM_DRIVER DXE_SAL_DRIVER UEFI_DRIVER UEFI_APPLICATION 
+
+[Sources]
+  # gif.h
+  GifParserLibInternals.h
+  bmp.h
+  lzw/lzw.c
+  lzw/lzw.h
+  lzw/lzw_table.c
+  lzw/lzw_table.h
+  lzw/lzw_bits.c
+  lzw/lzw_bits.h
+  lzw/darray.c
+  lzw/darray.h
+  GifParser.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  # StdLib/StdLib.dec
+  ShellPkg/ShellPkg.dec
+  LearnUefi/SimplePkg/SimplePkg.dec
+
+[LibraryClasses]
+  UefiBootServicesTableLib
+  DebugLib
+  BmpSupportLib
+  ShellLib
+  BaseLib
+  MemoryAllocationLib
+  GifParserLib
+
+  # LibC
+  # LibStdio
+  # LibStdLib
+  # LibString
+  # DevMedia
+
+[Protocols]
+  gEfiGraphicsOutputProtocolGuid
+  gEfiSimpleFileSystemProtocolGuid
+
+[BuildOptions]
+  # MSFT:*_*_*_CC_FLAGS = -D _CRT_SECURE_NO_WARNINGS
+  MSFT:*_*_IA32_CC_FLAGS             =  /GL /Od
+  MSFT:*_*_X64_CC_FLAGS              =  /GL /Od

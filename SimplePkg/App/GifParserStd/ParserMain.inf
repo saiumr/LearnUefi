@@ -1,0 +1,43 @@
+[Defines]
+  INF_VERSION = 0x00010006
+  BASE_NAME   = ParserMain
+  FILE_GUID   = c3738910-0f6a-41f4-a91d-a61d351cdabe   # new-guid
+  MODULE_TYPE = UEFI_APPLICATION
+  VERSION_STRING = 1.0
+  ENTRY_POINT = ShellCEntryLib
+
+[Sources]
+  ParserMain.c
+  ParserMain.h
+  
+
+[Packages]
+  MdePkg/MdePkg.dec
+  ShellPkg/ShellPkg.dec
+  LearnUefi/SimplePkg/SimplePkg.dec
+
+  # StdLib/StdLib.dec
+  # MdeModulePkg/MdeModulePkg.dec
+
+[LibraryClasses]
+  ShellCEntryLib
+  UefiLib
+  GifParserLib
+  
+#   UefiBootServicesTableLib
+#   DebugLib
+#   BmpSupportLib
+#   GifParserLib
+#   LibC
+#   LibStdio
+#   LibStdLib
+#   LibString
+#   DevMedia
+
+# [Protocols]
+#   gEfiGraphicsOutputProtocolGuid
+
+# Add override here, because default X64_CC_FLAGS add /X
+# [BuildOptions]  
+# MSFT:*_*_*_CC_FLAGS = /w
+# MSFT:DEBUG_*_IA32_CC_FLAGS = /Od

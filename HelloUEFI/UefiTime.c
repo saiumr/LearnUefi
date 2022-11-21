@@ -16,7 +16,7 @@ UefiMain(
     EFI_TIME Time;
     EFI_TIME_CAPABILITIES TimeCapability;
     gBS->CreateEvent(EVT_TIMER, TPL_CALLBACK, (EFI_EVENT_NOTIFY)NULL, (VOID*)NULL, &Event[0]);
-    gBS->SetTimer(Event[0], TimerPeriodic, 10 * 1000 * 1000);
+    gBS->SetTimer(Event[0], TimerPeriodic, 10 * 1000 * 1000);  // 1s
     Event[1] = gST->ConIn->WaitForKey;
 
     gST->ConOut->SetAttribute(gST->ConOut, EFI_LIGHTCYAN);

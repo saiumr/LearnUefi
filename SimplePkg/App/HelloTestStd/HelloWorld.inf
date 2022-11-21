@@ -1,0 +1,29 @@
+[Defines]
+  INF_VERSION = 0x00010006
+  BASE_NAME   = HelloWorld
+  FILE_GUID   = cf6cd7fc-fdc9-4d18-9899-124caa264a16   # new-guid
+  MODULE_TYPE = UEFI_APPLICATION
+  VERSION_STRING = 0.1
+  ENTRY_POINT = ShellCEntryLib
+
+[Sources]
+  HelloWorld.c
+
+[Packages]
+  StdLib/StdLib.dec
+  MdePkg/MdePkg.dec
+  ShellPkg/ShellPkg.dec
+
+[LibraryClasses]
+  LibC
+  LibStdio
+  ShellCEntryLib
+  # OrderedCollectionLib
+  DevMedia
+
+
+# Add override here, because default X64_CC_FLAGS add /X
+# [BuildOptions]  
+# MSFT:*_*_*_CC_FLAGS = /w
+# MSFT:DEBUG_*_IA32_CC_FLAGS = /Od
+  

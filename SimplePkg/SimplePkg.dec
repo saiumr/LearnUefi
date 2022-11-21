@@ -7,5 +7,9 @@
 [Includes]
   Include
 
+[Guids]
+  gSimplePkgTokenSpaceGuid          = { 0x76f2efa6, 0x7607, 0x4a78, { 0xa7, 0xdd, 0x43, 0xe4, 0xbd, 0x72, 0xc0, 0x99 }}
+
 [LibraryClasses]
 # provide interface for external app 
+GifParserLib|Include/Library/GifParserLib.h
