@@ -1,0 +1,31 @@
+[Defines]
+  INF_VERSION       = 0x00010005
+  BASE_NAME         = HiiString2Img
+  FILE_GUID         = 9af1ed6d-b87a-48de-9168-808fecb1459f
+  MODULE_TYPE       = UEFI_APPLICATION
+  VERSION_STRING    = 1.0
+  ENTRY_POINT       = UefiMain
+
+[Sources]
+  HiiString2Img.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  ShellPkg/ShellPkg.dec
+  LearnUefi/SimplePkg/SimplePkg.dec
+
+[LibraryClasses]
+  UefiApplicationEntryPoint
+  UefiBootServicesTableLib
+  UefiRuntimeServicesTableLib
+  UefiLib
+  HiiLib
+  ShellLib
+  BmpSupportLib
+
+[Protocols]
+  gEfiHiiStringProtocolGuid
+  gEfiSimpleTextOutProtocolGuid
+  gEfiSimpleTextOutProtocolGuid
+  gEfiHiiFontProtocolGuid

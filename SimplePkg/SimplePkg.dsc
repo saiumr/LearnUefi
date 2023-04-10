@@ -61,6 +61,7 @@
 
 
 [Components]
+  LearnUefi/help/handle1.inf
   LearnUefi/SimplePkg/App/HelloUefiPkgApp/HelloUefiPkg.inf
   LearnUefi/Tasks/UefiUSBDeviceEnumeration.inf
   LearnUefi/HelloUEFI/UefiEventMain.inf
@@ -70,5 +71,13 @@
 #  LearnUefi/SimplePkg/giftest/giftest.inf
   LearnUefi/SimplePkg/App/HelloTestStd/HelloWorld.inf
   LearnUefi/SimplePkg/App/GifParserStd/ParserMain.inf
+  LearnUefi/SimplePkg/App/HiiStringToImage/HiiString2Img.inf
 #!include StdLib/StdLib.inc
 # !include AppPkg/Applications/Sockets/Sockets.inc
+
+#  Add in Emulator or FD project .dsc file, and add it into .fdf file if you want to execute 
+#  this dxe module automatically or load it manually in Emulator.
+#  LearnUefi/SimplePkg/HelloDxe/HelloDxe.inf {
+#      <LibraryClasses>
+#      DebugLib|MdePkg/Library/BaseDebugLibSerialPort/BaseDebugLibSerialPort.inf
+#   }

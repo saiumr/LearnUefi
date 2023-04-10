@@ -210,7 +210,7 @@ DrawPic(
                             0, 0, 
                             0, 0, 
                             Width, Height, 
-                            Width*sizeof(EFI_GRAPHICS_OUTPUT_BLT_PIXEL)
+                            Width*sizeof(EFI_GRAPHICS_OUTPUT_BLT_PIXEL)  // Here is also 0 for deal with the whole frame buffer(GopBlt)
                             );
   }
   else {

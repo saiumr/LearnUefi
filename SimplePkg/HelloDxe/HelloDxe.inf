@@ -1,0 +1,30 @@
+[Defines]
+ INF_VERSION                    = 0x00010005
+ BASE_NAME                      = HelloDxe
+ FILE_GUID                      = D0B2C191-6255-4AC2-AE8E-73821B3E1F0F
+ MODULE_TYPE                    = UEFI_DRIVER
+ VERSION_STRING                 = 1.0
+
+ ENTRY_POINT                    = HelloDxeEntry
+
+[Sources]
+ HelloDxe.c
+
+[Packages]
+ MdePkg/MdePkg.dec
+ MdeModulePkg/MdeModulePkg.dec
+
+[LibraryClasses]
+  BaseLib
+  UefiLib
+  UefiRuntimeServicesTableLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint
+  DebugLib
+
+[Guids]
+
+[Protocols]
+
+[Pcd]
+

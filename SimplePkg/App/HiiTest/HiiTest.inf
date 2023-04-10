@@ -23,6 +23,10 @@
   UefiLib
   HiiLib
   ShellLib
+  BmpSupportLib
 
 [Protocols]
   gEfiHiiStringProtocolGuid
+  gEfiSimpleTextOutProtocolGuid
+  gEfiSimpleTextOutProtocolGuid
+  gEfiHiiFontProtocolGuid
