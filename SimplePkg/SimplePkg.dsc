@@ -57,11 +57,17 @@
   DevMedia|StdLib/LibC/Uefi/Devices/daShell.inf
   OrderedCollectionLib|MdePkg/Library/BaseOrderedCollectionRedBlackTreeLib/BaseOrderedCollectionRedBlackTreeLib.inf
   GifParserLib|LearnUefi/SimplePkg/Library/GifParserLib/GifParserLib.inf
+  ReportStatusCodeLib|MdePkg/Library/BaseReportStatusCodeLibNull/BaseReportStatusCodeLibNull.inf
+  UefiBootManagerLib|MdeModulePkg/Library/UefiBootManagerLib/UefiBootManagerLib.inf
+  HobLib|MdePkg/Library/DxeHobLib/DxeHobLib.inf
+  PerformanceLib|MdePkg/Library/BasePerformanceLibNull/BasePerformanceLibNull.inf
+  PeCoffGetEntryPointLib|MdePkg/Library/BasePeCoffGetEntryPointLib/BasePeCoffGetEntryPointLib.inf
+  DxeServicesTableLib|MdePkg/Library/DxeServicesTableLib/DxeServicesTableLib.inf
+  DxeServicesLib|MdePkg/Library/DxeServicesLib/DxeServicesLib.inf
 
 
 
 [Components]
-  LearnUefi/help/handle1.inf
   LearnUefi/SimplePkg/App/HelloUefiPkgApp/HelloUefiPkg.inf
   LearnUefi/Tasks/UefiUSBDeviceEnumeration.inf
   LearnUefi/HelloUEFI/UefiEventMain.inf
@@ -72,6 +78,9 @@
   LearnUefi/SimplePkg/App/HelloTestStd/HelloWorld.inf
   LearnUefi/SimplePkg/App/GifParserStd/ParserMain.inf
   LearnUefi/SimplePkg/App/HiiStringToImage/HiiString2Img.inf
+  LearnUefi/SimplePkg/Dxes/HelloDxe/HelloDxe.inf
+  LearnUefi/SimplePkg/App/UseHelloDxe/UseHelloDxe.inf
+
 #!include StdLib/StdLib.inc
 # !include AppPkg/Applications/Sockets/Sockets.inc
 

@@ -5,26 +5,30 @@
  MODULE_TYPE                    = UEFI_DRIVER
  VERSION_STRING                 = 1.0
 
- ENTRY_POINT                    = HelloDxeEntry
+ ENTRY_POINT                    = HelloDxeInitialize
 
 [Sources]
- HelloDxe.c
+  HelloDxe.h
+  HelloDxeEntry.c
 
 [Packages]
- MdePkg/MdePkg.dec
- MdeModulePkg/MdeModulePkg.dec
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  LearnUefi/SimplePkg/SimplePkg.dec
 
 [LibraryClasses]
   BaseLib
   UefiLib
   UefiRuntimeServicesTableLib
   UefiBootServicesTableLib
-  UefiDriverEntryPoint
+  UefiDriverEntryPoint            ## Driver module needed
   DebugLib
+  ReportStatusCodeLib
 
 [Guids]
 
 [Protocols]
+  gEfiHelloDxeProtocolGuid        ## PRODUCES
 
 [Pcd]
 

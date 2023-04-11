@@ -13,3 +13,8 @@
 [LibraryClasses]
 # provide interface for external app 
 GifParserLib|Include/Library/GifParserLib.h
+
+[Protocols]
+  ## I wrote this protocol to learn how to customize service-oriented drivers, it just could say "hello"
+  # Include/Protocol/HelloDxe.h
+  gEfiHelloDxeProtocolGuid = { 0x754E21F6, 0x56CC, 0x22d4, {0xAA, 0x38, 0x00, 0x90, 0x27, 0x3F, 0xC1, 0x4D } }

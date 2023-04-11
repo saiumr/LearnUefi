@@ -23,3 +23,23 @@
 
 显示模式和设定显示内容的关系（单独列举出来是因为模拟环境下的显示模式为PixelBltOnly，Blt意为Block Transfer），显示模式为PixelBitMask时，通过设置PixelInformation{RGBA}设定显示样式，虽然alpha通道值在结构体内是名称定义为Reserved的值  
 ![GetString](../assets/images/GUI-GraphicsOut-Blt.png)  
+
+### 字符串相关函数  
+
+在下列函数前面加上**Ascii**就是用于ASCLL字符的函数，默认是作用于Unicode16字符串的  
+
+![StrOp1](../assets/images/GUI-StringOperator.png)  
+
+![StrOp2](../assets/images/GUI-StringOperator2.png)  
+
+## UEFI驱动开发  
+
+### 服务型驱动  
+
+服务型驱动的特点（在模拟环境中先`load`）:  
+
+![服务型驱动的特点](../assets/images/ServiceDriver.png)  
+
+example:  
+[实现-HelloDxeEntry.c](../../SimplePkg/Dxes/HelloDxe/HelloDxeEntry.c)  
+[使用-UseHelloDxe.c](../../SimplePkg/App/UseHelloDxe/UseHelloDxe.c)  
