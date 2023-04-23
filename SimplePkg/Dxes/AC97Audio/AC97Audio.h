@@ -1,5 +1,7 @@
-#ifndef _UP_AUDIO_H_
-#define _UP_AUDIO_H_
+// AC97 was out-of-date equipment/chip, test this protocol use QEMU virtual-machine (or cannot implement at all?)
+
+#ifndef _AC97_AUDIO_MODULE_H_
+#define _AC97_AUDIO_MODULE_H_
 
 #include <Uefi.h>
 #include <Library/UefiBootServicesTableLib.h>
@@ -7,7 +9,7 @@
 #include <Library/DebugLib.h>
 #include <Library/MemoryAllocationLib.h>
 #include <Protocol/PciIo.h>
-#include "../Dec/UP_Audio.h"
+#include <Protocol/AC97Audio.h>
 
 #define AUDIO_PRIVATE_DATA_SIGNATURE SIGNATURE_32('A', 'U', 'I', 'O')
 

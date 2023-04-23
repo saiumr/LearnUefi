@@ -5,12 +5,12 @@
 **/
 
 
-#ifndef __UP_AUDIO_H__
-#define __UP_AUDIO_H__
+#ifndef __PROTOCOL_AC97_AUDIO__
+#define __PROTOCOL_AC97_AUDIO__
 
 #include <Uefi.h>
 
-#define EFI_AUDIO_PROTOCOL_GUID \
+#define EFI_AC97_AUDIO_PROTOCOL_GUID \
     { 0x542d5351, 0xbc0b, 0x72d2, {0x8e, 0x4f, 0x0, 0xa0, 0xc9, 0x69, 0x72, 0x3b } }
 #define AUDIO_PROTOCOL EFI_AUDIO_PROTOCOL_GUID
 
@@ -51,6 +51,6 @@ struct _EFI_AUDIO_PROTOCOL {
   EFI_EVENT         WaitForEndEvent;
 };
 
-typedef EFI_GUID gEfiAudioProtocolGuid;
+typedef EFI_GUID gEfiAC97AudioProtocolGuid;
 
 #endif

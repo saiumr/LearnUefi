@@ -1,0 +1,39 @@
+# This is a device driver(AC97 audio controllor)
+# AC97 was out-of-date equipment/chip, test this protocol use QEMU virtual-machine
+
+[Defines]
+ INF_VERSION                    = 0x00010005
+ BASE_NAME                      = AC97AudioDxe
+ FILE_GUID                      = B20FC191-6255-4AC2-AE8E-73821B3E1F0F
+ MODULE_TYPE                    = UEFI_DRIVER
+ VERSION_STRING                 = 1.0
+
+ ENTRY_POINT                    = InitializeDiskIo
+
+[Sources]
+  AC97Audio.h
+  AC97Audio.c
+  ComponentName.h
+  ComponentName.c
+
+[Packages]
+  MdePkg/MdePkg.dec
+  MdeModulePkg/MdeModulePkg.dec
+  LearnUefi/SimplePkg/SimplePkg.dec
+
+[LibraryClasses]
+  UefiLib
+  UefiRuntimeServicesTableLib
+  UefiBootServicesTableLib
+  UefiDriverEntryPoint            ## Driver module needed
+  DebugLib
+  MemoryAllocationLib
+
+[Guids]
+
+[Protocols]
+  gEfiPciIoProtocolGuid
+  gEfiAC97AudioProtocolGuid        ## PRODUCES
+
+[Pcd]
+

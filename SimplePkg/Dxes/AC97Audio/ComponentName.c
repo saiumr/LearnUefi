@@ -1,4 +1,4 @@
-#include "UP_Audio.h"
+#include "AC97Audio.h"
 
 //
 // EFI Component Name Protocol

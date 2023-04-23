@@ -28,6 +28,17 @@ Boot Service中的Protocol服务如下
 // 需要AgentHandle接管（由AgentHandle打开）
 // 如果是驱动程序AngentHandle是驱动绑定Handle，另外还需要ControllerHandle  
 // Attributes
+
+/*
+`AgentHandle`和`ControllerHandle`参数用于跟踪谁打开了协议并且为什么打开它。  
+这些信息对于管理协议的使用和避免冲突非常重要。  
+
+例如，当一个驱动程序使用`gBS->OpenProtocol`函数打开一个协议时，它需要提供自己的映像句柄作为AgentHandle，以及它要控制的设备的句柄作为ControllerHandle。  
+这样，UEFI固件就能够跟踪这个驱动程序正在使用这个协议来控制哪个设备。  
+
+如果另一个驱动程序试图以独占方式打开同一个设备上的同一个协议，UEFI固件将能够检测到冲突并阻止第二个驱动程序打开协议。  
+这有助于防止多个驱动程序同时控制同一个设备，从而避免冲突和不确定的行为。  
+*/
 gBS->OpenProtocol(...);  
 
 typedef
@@ -36,8 +47,8 @@ EFI_STATUS
   IN  EFI_HANDLE                Handle,
   IN  EFI_GUID                  *Protocol,
   OUT VOID                      **Interface  OPTIONAL,
-  IN  EFI_HANDLE                AgentHandle,
-  IN  EFI_HANDLE                ControllerHandle,
+  IN  EFI_HANDLE                AgentHandle,        // 设备驱动或应用程序句柄  
+  IN  EFI_HANDLE                ControllerHandle,   // 设备句柄  
   IN  UINT32                    Attributes
   );
 
@@ -53,7 +64,7 @@ EFI_STATUS
   );  
 
 // 只想找到Protocol（系统中只有一个或者只想找到第一个） 
-// 不关心是什么设备或者说只有我想要的那个设备有Protocol，就不用Handle了
+// 不关心是什么设备或者说只有我想要的那个设备有那个Protocol，就不用Handle了
 gBS->LocateProtocol(...);
 
 typedef

@@ -1,4 +1,4 @@
-#include "UP_Audio.h"   // Why not implement? See UP_Audio.h comment.
+#include "AC97Audio.h"   // Why not implement? See AC97Audio.h comment.
 
 // driver private data template
 AUDIO_PRIVATE_DATA gAudioPrivateDataTemplate = {
