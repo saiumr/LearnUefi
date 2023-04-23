@@ -10,4 +10,4 @@
 
 [edk2-底层原理](./all/edk2-底层原理.md)  
 
-[PCI和PCIE](./all/PCI和CPCIE.md)  
+[PCI和PCIE](./all/PCI和PCIE.md)  
