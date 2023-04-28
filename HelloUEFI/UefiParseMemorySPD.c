@@ -28,6 +28,7 @@ UefiMain(
     UINT8 offset;
     UINT8 count;
     UINT8 value[128];  // obtain SPD Configuration values
+    UINT8 SlaveAddr = 0xA0;
     Print(L"   ");
     for (count = 0x00; count < 0x10; ++count) {
         Print(L"%02x ", count);
@@ -38,14 +39,21 @@ UefiMain(
             Print(L"%d0 ", count);
             ++count;
         }
-        Status = ParseSPDByte(0xA0, offset, value+offset);
+        Status = ParseSPDByte(SlaveAddr, offset, value+offset);
         if (!EFI_ERROR(Status)) {
             Print(L"%02x ", value[offset]);  // print the value
         }
         else {
-            Print(L"Parse Error.\n");
-            Print(L"\n- Failed -\n");
-            return EFI_ABORTED;
+            // Print(L"Parse Error.\n");
+            // Print(L"\n- Failed -\n");
+            // return EFI_ABORTED;
+
+            Print(L"Slave address: 0x%02x\n", SlaveAddr);
+            if (SlaveAddr >= 0xC8) return EFI_ABORTED;
+            count = 0;
+            offset = 0;
+            SlaveAddr = SlaveAddr + 2;
+            continue;
         }
     }
 
@@ -82,7 +90,7 @@ EFI_STATUS FindDeviceSupportSMbus()
 EFI_STATUS ParseSPDByte(IN UINT8 slave_address, IN UINT8 register_index, OUT UINT8* value) 
 {
     EFI_STATUS Status;
-    EFI_SMBUS_HC_PROTOCOL *smbus_interface;
+    STATIC EFI_SMBUS_HC_PROTOCOL *smbus_interface;
     
     Status = gBS->LocateProtocol(&gEfiSmbusHcProtocolGuid, NULL, &smbus_interface);
     

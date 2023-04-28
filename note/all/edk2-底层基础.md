@@ -298,7 +298,7 @@ typedef struct {
 |NumberOfTableEntries|缓冲区 ConfigurationTable 中的系统配置表数量。|
 |ConfigurationTable|指向系统配置表的指针。表中的条目数为 NumberOfTableEntries。|
 
-### gBS：启动时服务  
+### gBS: 启动时服务  
 
 来源于下面的结构体，其中一些服务也有相应的lib实现  
 

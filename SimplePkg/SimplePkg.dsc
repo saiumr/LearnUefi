@@ -80,6 +80,7 @@
   LearnUefi/SimplePkg/App/HiiStringToImage/HiiString2Img.inf
   LearnUefi/SimplePkg/Dxes/HelloDxe/HelloDxe.inf
   LearnUefi/SimplePkg/App/UseHelloDxe/UseHelloDxe.inf
+  LearnUefi/HelloUEFI/UefiParseMemorySPD.inf
 
 #!include StdLib/StdLib.inc
 # !include AppPkg/Applications/Sockets/Sockets.inc
