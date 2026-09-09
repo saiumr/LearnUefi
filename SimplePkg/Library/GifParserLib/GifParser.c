@@ -122,6 +122,9 @@ GIFParserLogoBltFromFileOrBuffer(IN CHAR16 *filename, IN CHAR8 *file_buffer) {
         }
     }
 
+    // restore index
+    FrameIndex = 0;
+
     // play
     Status = gBS->CreateEvent(EVT_TIMER, TPL_CALLBACK, (EFI_EVENT_NOTIFY)NULL, (VOID*)NULL, &Events[0]);
     if (EFI_ERROR(Status)) {
@@ -144,7 +147,6 @@ GIFParserLogoBltFromFileOrBuffer(IN CHAR16 *filename, IN CHAR8 *file_buffer) {
         goto end;
     }
 
-    FrameIndex = 0;
     for (;;) {
         Status = gBS->WaitForEvent(2, Events, &EventIndex);
         if (EFI_ERROR(Status)) {
@@ -388,9 +390,9 @@ GIFParserGetAnimationFromGif(IN GIF *gif, OUT IMG_ANIMATION **animation) {
 		}
 
 		UINT8 bit_size = image->one_frame_data.LZW_Minimum_Code;
-		UINT32 out_changed_data_size = 0;
+		UINTN out_changed_data_size = 0;
 		//printf("bit_size: %u, changed_data_index: %llu, changed_data_size: %u\n", bit_size, changed_data_index, changed_data_size);
-		lzw_decompress(bit_size, changed_data_index, changed_data, (UINTN *)&out_changed_data_size, &changed_color_index_list);
+		lzw_decompress(bit_size, changed_data_index, changed_data, &out_changed_data_size, &changed_color_index_list);
 		//printf("out_changed_data_size: %u\n", out_changed_data_size);
 
 		// restore color
@@ -530,6 +532,10 @@ GIFParserGetAnimationFromGif(IN GIF *gif, OUT IMG_ANIMATION **animation) {
 		//printf("image->image_descriptor.flag_interlace&0x1: %u\n", image->image_descriptor.flag_interlace&0x1);
 		if ((image->image_descriptor.flag_interlace&0x1) == 1) {
 			IMG_FRAME *frame_raw = (IMG_FRAME *)AllocatePool(sizeof(IMG_FRAME) * pixel_count);
+            if (frame_raw == NULL) {
+                FreePool(frame);
+                return FALSE;
+            }
 			UINTN interlace_frame_line = 0;
 			for (UINTN group = 0; group < 4; ++group) {
 				UINTN current_line = 0;
