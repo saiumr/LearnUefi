@@ -35,26 +35,26 @@
   BmpSupportLib|MdeModulePkg/Library/BaseBmpSupportLib/BaseBmpSupportLib.inf
   SafeIntLib|MdePkg/Library/BaseSafeIntLib/BaseSafeIntLib.inf
   ShellCEntryLib|ShellPkg/Library/UefiShellCEntryLib/UefiShellCEntryLib.inf
-  LibC|StdLib/LibC/LibC.inf
-  LibCType|StdLib/LibC/Ctype/Ctype.inf
-  LibLocale|StdLib/LibC/Locale/Locale.inf
-  LibMath|StdLib/LibC/Math/Math.inf
-  LibSignal|StdLib/LibC/Signal/Signal.inf
-  LibStdio|StdLib/LibC/Stdio/Stdio.inf
-  LibStdLib|StdLib/LibC/StdLib/StdLib.inf
-  LibString|StdLib/LibC/String/String.inf
-  LibTime|StdLib/LibC/Time/Time.inf
-  LibUefi|StdLib/LibC/Uefi/Uefi.inf
-  LibWchar|StdLib/LibC/Wchar/Wchar.inf
-  LibGdtoa|StdLib/LibC/gdtoa/gdtoa.inf
-  LibGen|StdLib/PosixLib/Gen/LibGen.inf
-  DevUtility|StdLib/LibC/Uefi/Devices/daUtility.inf
-  DevConsole|StdLib/LibC/Uefi/Devices/daConsole.inf
-  LibIIO|StdLib/LibC/Uefi/InteractiveIO/IIO.inf
-  LibContainer|StdLib/LibC/Containers/ContainerLib.inf
+#   LibC|StdLib/LibC/LibC.inf
+#   LibCType|StdLib/LibC/Ctype/Ctype.inf
+#   LibLocale|StdLib/LibC/Locale/Locale.inf
+#   LibMath|StdLib/LibC/Math/Math.inf
+#   LibSignal|StdLib/LibC/Signal/Signal.inf
+#   LibStdio|StdLib/LibC/Stdio/Stdio.inf
+#   LibStdLib|StdLib/LibC/StdLib/StdLib.inf
+#   LibString|StdLib/LibC/String/String.inf
+#   LibTime|StdLib/LibC/Time/Time.inf
+#   LibUefi|StdLib/LibC/Uefi/Uefi.inf
+#   LibWchar|StdLib/LibC/Wchar/Wchar.inf
+#   LibGdtoa|StdLib/LibC/gdtoa/gdtoa.inf
+#   LibGen|StdLib/PosixLib/Gen/LibGen.inf
+#   DevUtility|StdLib/LibC/Uefi/Devices/daUtility.inf
+#   DevConsole|StdLib/LibC/Uefi/Devices/daConsole.inf
+#   LibIIO|StdLib/LibC/Uefi/InteractiveIO/IIO.inf
+#   LibContainer|StdLib/LibC/Containers/ContainerLib.inf
   UefiRuntimeLib|MdePkg/Library/UefiRuntimeLib/UefiRuntimeLib.inf
   UefiDriverEntryPoint|MdePkg/Library/UefiDriverEntryPoint/UefiDriverEntryPoint.inf
-  DevMedia|StdLib/LibC/Uefi/Devices/daShell.inf
+#   DevMedia|StdLib/LibC/Uefi/Devices/daShell.inf
   OrderedCollectionLib|MdePkg/Library/BaseOrderedCollectionRedBlackTreeLib/BaseOrderedCollectionRedBlackTreeLib.inf
   GifParserLib|LearnUefi/SimplePkg/Library/GifParserLib/GifParserLib.inf
   ReportStatusCodeLib|MdePkg/Library/BaseReportStatusCodeLibNull/BaseReportStatusCodeLibNull.inf
@@ -64,18 +64,19 @@
   PeCoffGetEntryPointLib|MdePkg/Library/BasePeCoffGetEntryPointLib/BasePeCoffGetEntryPointLib.inf
   DxeServicesTableLib|MdePkg/Library/DxeServicesTableLib/DxeServicesTableLib.inf
   DxeServicesLib|MdePkg/Library/DxeServicesLib/DxeServicesLib.inf
-
-
+  RegisterFilterLib|MdePkg/Library/RegisterFilterLibNull/RegisterFilterLibNull.inf
+  StackCheckLib|MdePkg/Library/StackCheckLib/StackCheckLib.inf
+  StackCheckFailureHookLib|MdePkg/Library/StackCheckLib/StackCheckLib.inf
+  StackCheckFailureHookLib|MdePkg/Library/StackCheckFailureHookLibNull/StackCheckFailureHookLibNull.inf
 
 [Components]
-  LearnUefi/SimplePkg/App/HelloUefiPkgApp/HelloUefiPkg.inf
+#   LearnUefi/SimplePkg/App/HelloUefiPkgApp/HelloUefiPkg.inf
   LearnUefi/Tasks/UefiUSBDeviceEnumeration.inf
   LearnUefi/HelloUEFI/UefiEventMain.inf
   LearnUefi/SimplePkg/App/HiiTest/HiiTest.inf
   LearnUefi/SimplePkg/App/HiiPic/HiiPic.inf
   LearnUefi/SimplePkg/App/HiiPic2/HiiPic2.inf
-#  LearnUefi/SimplePkg/giftest/giftest.inf
-  LearnUefi/SimplePkg/App/HelloTestStd/HelloWorld.inf
+#   LearnUefi/SimplePkg/App/HelloTestStd/HelloWorld.inf
   LearnUefi/SimplePkg/App/GifParserStd/ParserMain.inf
   LearnUefi/SimplePkg/App/HiiStringToImage/HiiString2Img.inf
   LearnUefi/SimplePkg/Dxes/HelloDxe/HelloDxe.inf

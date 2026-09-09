@@ -41,18 +41,18 @@ _GIF_TAILER_POINTER gTailerPointer;
 EFI_STATUS
 EFIAPI
 GIFParserLogoBltFromFileOrBuffer(IN CHAR16 *filename, IN CHAR8 *file_buffer) {
-	EFI_STATUS                       Status;
-  EFI_EVENT                        Events[2]       = {0};    // 0: Events[0] Time; 1: End Input
-  UINTN                            EventIndex      = 0;
-  EFI_GRAPHICS_OUTPUT_PROTOCOL     *GraphicsOutput = NULL;
-  UINT32                           FrameSize       = 0;
-  UINTN                            FrameIndex      = 0;
-  EFI_GRAPHICS_OUTPUT_BLT_PIXEL    **Bitmap        = NULL;
-  UINTN                            GopBltSize      = 0;
-  UINTN                            Height          = 0;
-  UINTN                            Width           = 0;
-  UINT8                            *Frame          = NULL;
-	IMG_ANIMATION                    *animation      = NULL;
+    EFI_STATUS                       Status;
+    EFI_EVENT                        Events[2]       = {0};    // 0: Events[0] Time; 1: End Input
+    UINTN                            EventIndex      = 0;
+    EFI_GRAPHICS_OUTPUT_PROTOCOL     *GraphicsOutput = NULL;
+    UINT32                           FrameSize       = 0;
+    UINTN                            FrameIndex      = 0;
+    EFI_GRAPHICS_OUTPUT_BLT_PIXEL    **Bitmap        = NULL;
+    UINTN                            GopBltSize      = 0;
+    UINTN                            Height          = 0;
+    UINTN                            Width           = 0;
+    UINT8                            *Frame          = NULL;
+    IMG_ANIMATION                    *animation      = NULL;
 	DEBUG((EFI_D_INFO, "GIFParserLogoBltFromFileOrBuffer Start.\n"));
 
 	if (filename) {	
@@ -66,32 +66,32 @@ GIFParserLogoBltFromFileOrBuffer(IN CHAR16 *filename, IN CHAR8 *file_buffer) {
 			return EFI_ABORTED;
 		}
 	} else {
-			DEBUG((EFI_D_INFO, "No file input.\n"));
-			return EFI_ABORTED;
+		DEBUG((EFI_D_INFO, "No file input.\n"));
+		return EFI_ABORTED;
 	}
 
-  if (animation == NULL) {
-    DEBUG((EFI_D_INFO, "animation is NULL.\n"));
-    return EFI_ABORTED;
-  }
+    if (animation == NULL) {
+        DEBUG((EFI_D_INFO, "animation is NULL.\n"));
+        return EFI_ABORTED;
+    }
 
-  Status = gBS->LocateProtocol(&gEfiGraphicsOutputProtocolGuid, NULL, (VOID **)&GraphicsOutput);
+    Status = gBS->LocateProtocol(&gEfiGraphicsOutputProtocolGuid, NULL, (VOID **)&GraphicsOutput);
 
-  if (EFI_ERROR(Status)) {
-    DEBUG((EFI_D_INFO, "Located Protocol Failed.\n"));
-    return EFI_ABORTED;
-  }
+    if (EFI_ERROR(Status)) {
+        DEBUG((EFI_D_INFO, "Located Protocol Failed.\n"));
+        return EFI_ABORTED;
+    }
 
-  Bitmap = (EFI_GRAPHICS_OUTPUT_BLT_PIXEL **)AllocatePool(sizeof(EFI_GRAPHICS_OUTPUT_BLT_PIXEL *) * animation->count + 1);  // the last memory equals NULL.
-  if (Bitmap == NULL) {
-    DEBUG((EFI_D_INFO, "Bitmap AllocatePool failed.\n"));
-    return EFI_ABORTED;
-  }
+    Bitmap = (EFI_GRAPHICS_OUTPUT_BLT_PIXEL **)AllocatePool(sizeof(EFI_GRAPHICS_OUTPUT_BLT_PIXEL *) * animation->count + 1);  //the last memory equals NULL.
+    if (Bitmap == NULL) {
+        DEBUG((EFI_D_INFO, "Bitmap AllocatePool failed.\n"));
+        return EFI_ABORTED;
+    }
 
-  // load
-  for (FrameIndex = 0; FrameIndex < animation->count; ++FrameIndex) {
+    // load
+    for (FrameIndex = 0; FrameIndex < animation->count; ++FrameIndex) {
 		Bitmap[FrameIndex] = NULL;  // must set NULL
-    Frame  = GIFParserAnimationFramesTransformBMP(animation, FrameIndex, &FrameSize);
+        Frame  = GIFParserAnimationFramesTransformBMP(animation, FrameIndex, &FrameSize);
     
 		if (Frame) {
 			Status = TranslateBmpToGopBlt(
@@ -106,88 +106,114 @@ GIFParserLogoBltFromFileOrBuffer(IN CHAR16 *filename, IN CHAR8 *file_buffer) {
 			FreePool(animation->frames[FrameIndex]);
 			Frame = NULL;
 			animation->frames[FrameIndex] = NULL;
-		}
-		else {
+		} else {
 			DEBUG((EFI_D_INFO, "LOGO Frame is NULL\n"));
 			return EFI_ABORTED;
 		}
-    DEBUG((EFI_D_INFO, "FrameSize: %u, Bitmap size should be: %u\n", FrameSize, GopBltSize));
+        DEBUG((EFI_D_INFO, "FrameSize: %u, Bitmap size should be: %u\n", FrameSize, GopBltSize));
 		
-    if (EFI_ERROR(Status)) {
-      DEBUG((EFI_D_INFO, "Translate failed [Index = %u], Status = %u\n", FrameIndex, Status));
-      for (FrameIndex = 0; FrameIndex < animation->count; ++FrameIndex) {
-        if (Bitmap[FrameIndex]) FreePool(Bitmap[FrameIndex]);
-      }
-      if (Bitmap) FreePool(Bitmap);
-      return EFI_ABORTED;
-    }
-  }
-
-  // play
-  Status = gBS->CreateEvent(EVT_TIMER, TPL_CALLBACK, (EFI_EVENT_NOTIFY)NULL, (VOID*)NULL, &Events[0]);
-  Status = gBS->SetTimer(Events[0], TimerPeriodic, animation->delays * 100 * 100);  // ms
-  Events[1] = gST->ConIn->WaitForKey;
-
-  for (FrameIndex = 0; FrameIndex < animation->count; ) {
-    gBS->WaitForEvent(2, Events, &EventIndex);
-    switch (EventIndex) {
-      case 0:
-      {
-        Status = GraphicsOutput->Blt(
-                  GraphicsOutput,
-                  Bitmap[FrameIndex],
-                  EfiBltBufferToVideo,
-                  0, 
-                  0, 
-                  (GraphicsOutput->Mode->Info->HorizontalResolution - Width) / 2, 
-                  (GraphicsOutput->Mode->Info->VerticalResolution - Height) / 2,
-                  Width,
-                  Height,
-                  Width * sizeof (EFI_GRAPHICS_OUTPUT_BLT_PIXEL)
-                  );
-        
         if (EFI_ERROR(Status)) {
-          DEBUG((EFI_D_INFO, "Blt Failed [Index = %u]\n", FrameIndex));
-          for (FrameIndex = 0; FrameIndex < animation->count; FrameIndex++) {
-            if (Bitmap[FrameIndex] != NULL) {
-              FreePool(Bitmap[FrameIndex]);
+            DEBUG((EFI_D_INFO, "Translate failed [Index = %u], Status = %u\n", FrameIndex, Status));
+            for (FrameIndex = 0; FrameIndex < animation->count; ++FrameIndex) {
+                if (Bitmap[FrameIndex]) FreePool(Bitmap[FrameIndex]);
             }
-          }
-          FreePool(Bitmap);
-          return EFI_ABORTED;
+            if (Bitmap) FreePool(Bitmap);
+            return EFI_ABORTED;
         }
-
-        FrameIndex++;
-        if (FrameIndex == animation->count) {
-          FrameIndex = 0;
-        }
-      }
-        break;
-
-      default:
-        goto end;
-        break;
     }
-  }  
 
-  end:
+    // play
+    Status = gBS->CreateEvent(EVT_TIMER, TPL_CALLBACK, (EFI_EVENT_NOTIFY)NULL, (VOID*)NULL, &Events[0]);
+    if (EFI_ERROR(Status)) {
+        goto end;
+    }
+    
+    Events[1] = gST->ConIn->WaitForKey;
+
+    /*
+    * Start timer for frame 0.
+    * UEFI timer unit: 100ns.
+    * 1ms = 10000 * 100ns.
+    */
+    Status = gBS->SetTimer(
+        Events[0],
+        TimerRelative,
+        (UINT64)animation->delays[FrameIndex] * 10000
+    );
+    if (EFI_ERROR(Status)) {
+        goto end;
+    }
+
+    FrameIndex = 0;
+    for (;;) {
+        Status = gBS->WaitForEvent(2, Events, &EventIndex);
+        if (EFI_ERROR(Status)) {
+            break;
+        }
+
+        switch (EventIndex) {
+            case 0:
+            {
+                Status = GraphicsOutput->Blt(
+                          GraphicsOutput,
+                          Bitmap[FrameIndex],
+                          EfiBltBufferToVideo,
+                          0, 
+                          0, 
+                          (GraphicsOutput->Mode->Info->HorizontalResolution - Width) / 2, 
+                          (GraphicsOutput->Mode->Info->VerticalResolution - Height) / 2,
+                          Width,
+                          Height,
+                          Width * sizeof (EFI_GRAPHICS_OUTPUT_BLT_PIXEL)
+                          );
+                if (EFI_ERROR(Status)) {
+                    goto end;
+                }
+
+                FrameIndex++;
+
+                if (FrameIndex >= animation->count) {
+                    FrameIndex = 0;
+                }
+
+                /*
+                * Set timer for the next frame.
+                */
+                Status = gBS->SetTimer(
+                    Events[0],
+                    TimerRelative,
+                    (UINT64)animation->delays[FrameIndex] * 10000
+                );
+
+                if (EFI_ERROR(Status)) {
+                    goto end;
+                }
+            }
+            break;
+
+            default:
+                goto end;
+            break;
+        }
+    }  
+
+    end:
 	// Do not close Events[1], it's a system global event.
-  // gBS->CloseEvent(Events[1]);
-  gBS->CloseEvent(Events[0]);
+    // gBS->CloseEvent(Events[1]);
+    gBS->CloseEvent(Events[0]);
 
 	// FreePool
-  for (FrameIndex = 0; FrameIndex < animation->count; FrameIndex++) {
-    if (Bitmap[FrameIndex]) {
+    for (FrameIndex = 0; FrameIndex < animation->count; FrameIndex++) {
+        if (Bitmap[FrameIndex]) {
 			FreePool(Bitmap[FrameIndex]);
-		}
-		else { 
+		} else { 
 			break;
 		}
-  }
+    }
 	if (Bitmap) FreePool(Bitmap);
 	GIFParserClearAnimation(animation);
 
-  return EFI_SUCCESS;
+    return EFI_SUCCESS;
 }
 
 UINT8 *GIFParserAnimationFramesTransformBMP(IN IMG_ANIMATION *animation, IN UINTN frame_index, OUT UINT32 *frame_size) {
@@ -300,13 +326,19 @@ GIFParserGetAnimationFromGif(IN GIF *gif, OUT IMG_ANIMATION **animation) {
 	if (gif->GraphicsExtHeader->next == NULL) {
 		//printf("gif->GraphicsExtHeader->next == NULL\n");
 	}
-	(*animation)->delays = (UINT32)(gif->GraphicsExtHeader->next->graphics.delay_time * 10);  // ms
 	(*animation)->count = gif->FramesCount;
-	
 	(*animation)->frames = (IMG_FRAME **)AllocatePool(sizeof(IMG_FRAME*) * (*animation)->count);
 	if ((*animation)->frames == NULL) {
 		return FALSE;
 	}
+    (*animation)->delays = (UINT32 *)AllocatePool(sizeof(UINT32) * (*animation)->count);
+    if ((*animation)->delays == NULL)
+    {
+        FreePool((*animation)->frames);
+        FreePool(*animation);
+        *animation = NULL;
+        return FALSE;
+    }
 
 	//printf("true width/height: %u, %u\n", (*animation)->w, (*animation)->h);
 
@@ -541,7 +573,7 @@ GIFParserGetAnimationFromGif(IN GIF *gif, OUT IMG_ANIMATION **animation) {
 			frame = frame_raw;
 		}
 
-
+        (*animation)->delays[frame_count] = graphics->graphics.delay_time * 10;
 		(*animation)->frames[frame_count] = frame;
 		frame = NULL;
 		++frame_count;
@@ -574,6 +606,7 @@ GIFParserClearAnimation(IN IMG_ANIMATION *animation) {
 			} 
 		}
 		if (animation->frames) FreePool(animation->frames);
+        if (animation->delays) FreePool(animation->delays);
 		FreePool(animation);
 	}
 	return TRUE;
